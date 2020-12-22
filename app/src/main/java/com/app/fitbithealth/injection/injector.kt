@@ -7,12 +7,14 @@ import com.app.fitbithealth.model.UserHolder
 import com.app.fitbithealth.shareddata.endpoint.ApiEndPoint
 import com.app.fitbithealth.shareddata.repo.UserRepo
 import com.app.fitbithealth.shareddata.repo.UserRepository
+import com.app.fitbithealth.ui.auth.login.LoginViewModel
 import com.app.fitbithealth.utils.Config
 import com.readystatesoftware.chuck.ChuckInterceptor
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -21,7 +23,7 @@ import java.util.concurrent.TimeUnit
 
 val viewModelModule = module {
     single<UserRepo> { UserRepository(get(), get()) }
-
+    viewModel { LoginViewModel(get()) }
 }
 
 val sharedPreferenceModule = module {
