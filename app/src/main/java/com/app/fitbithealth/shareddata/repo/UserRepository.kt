@@ -2,10 +2,7 @@ package com.app.fitbithealth.shareddata.repo
 
 import androidx.lifecycle.MutableLiveData
 import com.app.fitbithealth.common.helper.CallbackWrapper
-import com.app.fitbithealth.model.ApiError
-import com.app.fitbithealth.model.AuthResponseModel
-import com.app.fitbithealth.model.RequestState
-import com.app.fitbithealth.model.UserHolder
+import com.app.fitbithealth.model.*
 import com.app.fitbithealth.shareddata.base.BaseView
 import com.app.fitbithealth.shareddata.endpoint.ApiEndPoint
 import com.app.fitbithealth.utils.Config
@@ -49,7 +46,35 @@ class UserRepository(
                         callback.value = RequestState(progress = false, apiResponse = response)
                     }
                 }).addTo(disposable)
+        }
+    }
 
+    override fun getActivitiesByDate(
+        selectedDate: String,
+        currentOffset: Int,
+        isInternetConnected: Boolean,
+        baseView: BaseView,
+        disposable: CompositeDisposable,
+        callback: MutableLiveData<RequestState<Response<ActivitiesResponseModel>>>
+    ) {
+        if (!isInternetConnected) {
+            callback.value = RequestState(error = ApiError(Config.NETWORK_ERROR))
+        } else {
+            mUserHolder.mAccessToken?.also { token ->
+                mApiEndPoint.getActivitiesByDate(token, selectedDate, currentOffset)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { callback.value = RequestState(progress = true) }
+                    .subscribeWith(object :
+                        CallbackWrapper<Response<ActivitiesResponseModel>>(baseView) {
+                        override fun onApiError(e: Throwable?) {
+                            callback.value = RequestState(progress = false)
+                        }
+
+                        override fun onApiSuccess(response: Response<ActivitiesResponseModel>) {
+                            callback.value = RequestState(progress = false, apiResponse = response)
+                        }
+                    }).addTo(disposable)
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ import com.app.fitbithealth.shareddata.endpoint.ApiEndPoint
 import com.app.fitbithealth.shareddata.repo.UserRepo
 import com.app.fitbithealth.shareddata.repo.UserRepository
 import com.app.fitbithealth.ui.auth.login.LoginViewModel
+import com.app.fitbithealth.ui.workout.WorkoutViewModel
 import com.app.fitbithealth.utils.Config
 import com.readystatesoftware.chuck.ChuckInterceptor
 import io.reactivex.schedulers.Schedulers
@@ -23,7 +24,9 @@ import java.util.concurrent.TimeUnit
 
 val viewModelModule = module {
     single<UserRepo> { UserRepository(get(), get()) }
+
     viewModel { LoginViewModel(get()) }
+    viewModel { WorkoutViewModel(get()) }
 }
 
 val sharedPreferenceModule = module {
