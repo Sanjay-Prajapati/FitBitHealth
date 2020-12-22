@@ -1,6 +1,7 @@
 package com.app.fitbithealth.shareddata.base
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -15,6 +16,7 @@ import com.app.fitbithealth.R
 import com.app.fitbithealth.common.extension.hideKeyboard
 import com.app.fitbithealth.common.extension.resToast
 import com.app.fitbithealth.model.UserHolder
+import com.app.fitbithealth.ui.auth.login.LoginActivity
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
 import com.github.pwittchen.reactivenetwork.library.rx2.internet.observing.InternetObservingSettings
 import com.github.pwittchen.reactivenetwork.library.rx2.internet.observing.strategy.SocketInternetObservingStrategy
@@ -168,5 +170,15 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseVie
 
     fun showLoadingIndicator(progressBar: View, isShow: Boolean) {
         progressBar.visibility = if (isShow) View.VISIBLE else View.GONE
+    }
+
+    override fun autoLogout() {
+        mUserHolder.clearData()
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.addFlags(
+            Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        )
+        startActivity(intent)
     }
 }

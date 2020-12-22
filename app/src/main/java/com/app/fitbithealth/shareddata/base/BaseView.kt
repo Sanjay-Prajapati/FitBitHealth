@@ -14,5 +14,7 @@ interface BaseView {
 
     fun generalErrorAction()
 
+    fun autoLogout()
+
     fun onServerDown()
 }

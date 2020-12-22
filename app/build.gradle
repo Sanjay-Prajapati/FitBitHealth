@@ -13,6 +13,9 @@ android {
 
     //variable
     def API_URL = "API_URL"
+    def APP_CLIENT_ID ="APP_CLIENT_ID"
+    def APP_CLIENT_SECRET ="APP_CLIENT_SECRET"
+    def APP_CALLBACK_URL ="APP_CALLBACK_URL"
 
     flavorDimensions "api"
 
@@ -42,10 +45,16 @@ android {
         dev{
             dimension "api"
             buildConfigField STRING, API_URL, APP_DEV_URL
+            buildConfigField STRING, APP_CLIENT_ID, FITBIT_CLIENT_ID
+            buildConfigField STRING, APP_CLIENT_SECRET, FITBIT_CLIENT_SECRET
+            buildConfigField STRING, APP_CALLBACK_URL, FITBIT_CALLBACK_URL
         }
         production{
             dimension "api"
             buildConfigField STRING, API_URL, APP_PRODUCTION_URL
+            buildConfigField STRING, APP_CLIENT_ID, FITBIT_CLIENT_ID
+            buildConfigField STRING, APP_CLIENT_SECRET, FITBIT_CLIENT_SECRET
+            buildConfigField STRING, APP_CALLBACK_URL, FITBIT_CALLBACK_URL
         }
     }
     compileOptions {
