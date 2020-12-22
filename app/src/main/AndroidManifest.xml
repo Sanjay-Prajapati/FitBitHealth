@@ -43,5 +43,9 @@
             android:name=".ui.workout.WorkoutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 </manifest>

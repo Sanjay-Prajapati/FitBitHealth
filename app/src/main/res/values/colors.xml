@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#33888F</color>
     <color name="colorAccent">#54E6F3</color>
     <color name="colorPrimaryRipple">#83A5A8</color>
+    <color name="colorPrimaryLight">#C3DFE1</color>
+    <color name="colorPrimaryLighter">#DCE1E1</color>
+    <color name="transparentProgress">#90B8DCDF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 </resources>

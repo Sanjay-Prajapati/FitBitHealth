@@ -1,10 +1,20 @@
 <resources>
     <string name="app_name">Fit Bit Health</string>
+
+    //common error message
     <string name="text_error_network">No Internet connection!!!</string>
     <string name="text_error_internal_server">Internal server error. Please retry!!!</string>
     <string name="text_error_timeout">Sorry, We lost you. Please retry!!!</string>
     <string name="text_error_connection">Look a like we lost you for a moment. Please retry!!!</string>
     <string name="text_server_connection">There is an issue while connecting to server</string>
 
+    //login screen
     <string name="text_login_to_fit_bit">Logging you into Fit Bit Health&#8230;</string>
+
+    //workout screen
+    <string name="text_title_workout">Your Workout</string>
+    <string name="text_workout_desc">Note : Above listed activities are from %s date.</string>
+    <string name="text_no_workout_found">No workout found</string>
+    <string name="text_calories">%s cals</string>
+    <string name="text_time">%s min</string>
 </resources>

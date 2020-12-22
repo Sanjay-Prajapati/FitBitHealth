@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         super.onResume()
         mCoroutineScope = CoroutineScope(Dispatchers.Main)
         mCoroutineScope.launch {
-            delay(TimeUnit.SECONDS.toMillis(5))
+            delay(TimeUnit.SECONDS.toMillis(2))
             mUserHolder?.let {
                 if (it.mAccessToken.isNullOrBlank()) {
                     LoginActivity.start(this@SplashActivity)

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activities"
+            type="com.app.fitbithealth.model.ActivitiesModel" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_8"
+        android:layout_marginBottom="@dimen/space_8"
+        app:cardCornerRadius="@dimen/space_6">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_16">
+
+            <TextView
+                android:id="@+id/tvActivityName"
+                style="@style/TextViewStyle.RobotoMedium"
+                android:text="@{activities.activityName}"
+                android:textSize="@dimen/font_medium"
+                tools:text="Activity name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvActivityName"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    style="@style/TextViewStyle"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:layout_weight="0.5"
+                    android:drawablePadding="@dimen/space_8"
+                    android:gravity="start|center_vertical"
+                    android:textSize="@dimen/font_normal"
+                    app:drawableStartCompat="@drawable/vd_time"
+                    tools:text="8 min" />
+
+                <TextView
+                    android:id="@+id/tvCalories"
+                    style="@style/TextViewStyle"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:layout_weight="0.5"
+                    android:drawablePadding="@dimen/space_8"
+                    android:gravity="start|center_vertical"
+                    android:textSize="@dimen/font_normal"
+                    app:drawableStartCompat="@drawable/vd_calories"
+                    tools:text="8 cals" />
+            </LinearLayout>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

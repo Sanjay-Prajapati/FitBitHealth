@@ -17,7 +17,7 @@ class UserHolder(preference: SharedPreferences) {
         private set
 
     fun setAuthCredentials(accessToken: String, refreshToken: String, userId: String) {
-        mAccessToken = accessToken
+        mAccessToken = "Bearer $accessToken"
         mRefreshToken = refreshToken
         mUserId = userId
     }
