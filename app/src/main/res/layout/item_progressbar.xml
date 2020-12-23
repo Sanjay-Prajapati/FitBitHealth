@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/progressBar"
     android:layout_width="match_parent"
@@ -14,9 +15,27 @@
     tools:ignore="MissingDefaultResource"
     tools:visibility="visible">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loadingIndicator"
+        android:layout_width="@dimen/space_200"
+        android:layout_height="@dimen/space_200"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:indeterminateTint="@color/colorPrimaryDark" />
-</FrameLayout>
+        android:elevation="@dimen/space_4"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading_indicator.json"
+        app:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/tvLoadingDesc"
+        style="@style/TextViewStyle"
+        android:gravity="center"
+        android:layout_below="@+id/loadingIndicator"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/space_90"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
+        android:text="@string/text_login_to_fit_bit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_medium" />
+</RelativeLayout>

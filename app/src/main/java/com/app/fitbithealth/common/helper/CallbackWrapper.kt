@@ -46,9 +46,7 @@ abstract class CallbackWrapper<T : Response<*>>(
     }
 
     override fun onError(e: Throwable) {
-        Timber.d(
-            "Error in API call ${e.printStackTrace()}"
-        )
+        Timber.d("Error in API call ${e.printStackTrace()}")
         when (e) {
             is HttpException -> {
                 e.response()?.also { response ->

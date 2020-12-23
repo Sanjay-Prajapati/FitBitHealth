@@ -115,9 +115,6 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7'
 
-    // image cropping library
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
-
     //chuck for checking network api call response in notification
     debugImplementation('com.readystatesoftware.chuck:library:1.1.0') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
@@ -126,8 +123,7 @@ dependencies {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
 
-    // image loading library
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    //loading indicator animation library
+    implementation 'com.airbnb.android:lottie:3.0.7'
 
 }

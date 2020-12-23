@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import com.app.fitbithealth.R
 import com.app.fitbithealth.common.extension.snack
+import com.app.fitbithealth.common.helper.RxHelper
 import com.app.fitbithealth.databinding.ActivityLoginBinding
 import com.app.fitbithealth.shareddata.base.BaseActivity
 import com.app.fitbithealth.ui.workout.WorkoutActivity
@@ -36,15 +37,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (mUserHolder.mAuthCode.isNullOrEmpty()) {
-            launchWebBrowser()
-        }
-    }
-
     override fun initView() {
-
+        // no need to implement
     }
 
     override fun initObserver() {
@@ -76,7 +70,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     override fun handleListener() {
-
+        RxHelper.onClick(mBinding.btnLogin, mDisposable) {
+            launchWebBrowser()
+        }
     }
 
     override fun displayMessage(message: String) {
