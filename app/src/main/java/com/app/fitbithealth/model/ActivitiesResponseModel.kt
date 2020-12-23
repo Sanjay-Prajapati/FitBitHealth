@@ -30,8 +30,10 @@ data class ActivitiesModel(
     val startTime: String? = null,
     @SerializedName("steps")
     val steps: String? = null,
-    var doLoadMore: Int = 0
-)
+    var displayDuration: String = "",
+    var displayStartTime: String = "",
+    var doLoadMore: Int = 0,
+    )
 
 data class ManualValuesSpecified(
     @SerializedName("calories")

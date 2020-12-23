@@ -32,10 +32,22 @@
                 android:textSize="@dimen/font_medium"
                 tools:text="Activity name" />
 
+            <TextView
+                android:id="@+id/tvActivityTime"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/tvActivityName"
+                android:layout_marginTop="@dimen/space_8"
+                android:drawablePadding="@dimen/space_8"
+                android:gravity="start|center_vertical"
+                android:text="@{activities.displayStartTime}"
+                android:textSize="@dimen/font_small_medium"
+                tools:text="23 Dec, 2020 at 01:00 am" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvActivityName"
+                android:layout_below="@+id/tvActivityTime"
                 android:weightSum="1">
 
                 <TextView
@@ -47,6 +59,7 @@
                     android:drawablePadding="@dimen/space_8"
                     android:gravity="start|center_vertical"
                     android:textSize="@dimen/font_normal"
+                    android:text="@{activities.displayDuration}"
                     app:drawableStartCompat="@drawable/vd_time"
                     tools:text="8 min" />
 

@@ -43,20 +43,8 @@ class WorkoutAdapter(private val mDataList: ArrayList<ActivitiesModel>) :
             holder.mBinding.apply {
                 with(mDataList[position]) {
                     holder.mBinding.activities = this
-                    val duration = duration?.let {
-                        it / (1000 * 60)
-                    } ?: let {
-                        0
-                    }
-                    holder.mBinding.tvTime.text = String.format(
-                        holder.itemView.context.getString(R.string.text_time),
-                        duration
-                    )
                     holder.mBinding.tvCalories.text =
-                        String.format(
-                            holder.itemView.context.getString(R.string.text_calories),
-                            calories
-                        )
+                        String.format(holder.itemView.context.getString(R.string.text_calories), calories)
                 }
             }
 
