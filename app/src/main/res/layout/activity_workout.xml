@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/item_toolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/TextViewStyle.RobotoBold.Title"
+                android:layout_alignTop="@+id/tvFilter"
+                android:layout_alignBottom="@+id/tvFilter"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/space_16"
+                android:layout_toStartOf="@+id/tvFilter"
+                android:gravity="center_vertical|start"
+                android:text="@string/text_title_workout"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/tvFilter"
+                style="@style/FilterTextView"
+                android:layout_alignParentEnd="true"
+                tools:text="22 Dec, 2020" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvExercise"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/tvFilterDesc"
+                android:layout_below="@+id/tvFilter"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:background="@color/colorPrimaryLighter"
+                android:paddingTop="@dimen/space_8"
+                android:paddingBottom="@dimen/space_8"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_workout" />
+
+            <TextView
+                android:id="@+id/tvFilterDesc"
+                style="@style/TextViewStyle"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/space_16"
+                android:layout_marginEnd="@dimen/space_16"
+                android:layout_marginBottom="@dimen/space_16"
+                android:layout_marginTop="@dimen/space_8"
+                android:layout_centerHorizontal="true"
+                android:text="@string/text_workout_desc"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_small_medium" />
+
+            <TextView
+                android:id="@+id/tvNotFound"
+                style="@style/TextViewStyle"
+                android:layout_centerInParent="true"
+                android:text="@string/text_no_workout_found"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
