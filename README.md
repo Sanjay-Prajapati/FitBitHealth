@@ -1,6 +1,6 @@
-# Fit Bit Health
+# FitBit Health
 
-A Fit Bit Health android application to fetch data from Fitbit API.
+A FitBit Health android application to fetch data from Fitbit API.
 
 
 * UI development
