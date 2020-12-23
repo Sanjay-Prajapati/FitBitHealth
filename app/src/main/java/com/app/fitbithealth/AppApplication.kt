@@ -8,6 +8,10 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import timber.log.Timber
 
+/**
+ * App Application class to initialize the KOIN and Timber
+ * Timber library used for printing logs
+ */
 class AppApplication : Application() {
     override fun onCreate() {
         super.onCreate()

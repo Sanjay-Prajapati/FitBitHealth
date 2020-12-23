@@ -2,6 +2,10 @@ package com.app.fitbithealth.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * RequestState class is used for live data object
+ * To store user API call data
+ */
 data class RequestState<T>(
     var error: ApiError? = null,
     var progress: Boolean = false,
@@ -15,6 +19,9 @@ data class RequestState<T>(
  */
 data class ApiError(val errorState: String, val customMessage: String? = null)
 
+/**
+ * Model for API Errors
+ */
 data class ErrorModel(
     @SerializedName("success")
     val isSuccess:Boolean,

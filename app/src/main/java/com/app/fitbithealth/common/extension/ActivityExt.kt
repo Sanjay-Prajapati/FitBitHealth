@@ -12,6 +12,10 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.app.fitbithealth.R
 
+/**
+ * This file contains Activity related extension functions
+ */
+
 fun Activity.resToast(@StringRes res:Int){
     Toast.makeText(this, res, Toast.LENGTH_LONG).show()
 }

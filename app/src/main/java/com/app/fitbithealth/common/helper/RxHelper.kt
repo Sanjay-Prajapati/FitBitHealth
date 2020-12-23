@@ -8,6 +8,9 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import java.util.concurrent.TimeUnit
 
+/**
+ * RxHelper class is used for handling View clicks
+ */
 class RxHelper {
     companion object {
         fun onClick(view: View, disposable: CompositeDisposable, onRxClick: () -> Unit) {

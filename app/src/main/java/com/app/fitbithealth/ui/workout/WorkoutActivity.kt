@@ -19,8 +19,15 @@ import com.app.fitbithealth.utils.Config
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
+/**
+ * To list the user workouts
+ */
 class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
     companion object {
+        /**
+         * to start the workout activity
+         * @param context calling activity context reference
+         */
         fun start(context: Context) {
             context.startActivity(Intent(context, WorkoutActivity::class.java))
         }
@@ -40,6 +47,9 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         getActivities()
     }
 
+    /**
+     * To Observe the live data observable objects
+     */
     override fun initObserver() {
         mViewModel.getActivitiesRequest().observe(this, { response ->
             response?.also { requestState ->
@@ -60,6 +70,9 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         })
     }
 
+    /**
+     * To bind the activity data
+     */
     private fun ActivitiesResponseModel.bindActivitiesData() {
         mViewModel.setNextPage(!this.paginationModel?.nextPageLink.isNullOrEmpty())
 
@@ -75,6 +88,9 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         mEndWithAuto = false
     }
 
+    /**
+     * To show progress in pagination API call
+     */
     private fun showProgress() {
         var needToAdd = true
         if (mViewModel.getActivitiesList().size > 0
@@ -93,6 +109,9 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         }
     }
 
+    /**
+     *  To hide progress in pagination API call
+     */
     private fun hideProgress() {
         if (mViewModel.getActivitiesList().size > 0
             && mViewModel.getActivitiesList()[mViewModel.getActivitiesList().size - 1]
@@ -105,6 +124,10 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         }
     }
 
+    /**
+     * To show and hide no activity found message view
+     * @param isShow boolean params for show and hide
+     */
     private fun showNoActivityFound(isShow: Boolean) {
         mBinding.rvExercise.visibility = if (isShow) View.GONE else View.VISIBLE
         mBinding.tvFilterDesc.visibility = if (isShow) View.GONE else View.VISIBLE
@@ -112,10 +135,16 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
     }
 
     override fun handleListener() {
+        /**
+         * to show case the date picker dialog
+         */
         RxHelper.onClick(mBinding.tvFilter, mDisposable) {
             mFilterDateDialog.show()
         }
 
+        /**
+         * this scroll listener helps to call the pagination API
+         */
         mBinding.rvExercise.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -147,6 +176,9 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         mBinding.root.snack(message)
     }
 
+    /**
+     * Initialize filter dialog and activities recyclerview objects
+     */
     private fun initFilterAndActivities() {
         mFilterCalendar = Calendar.getInstance()
 
@@ -174,6 +206,9 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         mBinding.rvExercise.adapter = mAdapter
     }
 
+    /**
+     * To update the filter text view date based on dialog date selection
+     */
     private fun updateFilterData() {
         val formattedDate = mViewModel.getSelectedDate().toFormatDate(DATE_FORMAT_DD_MM_YYYY)
         mBinding.tvFilter.text = formattedDate
@@ -185,6 +220,9 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         showNoActivityFound(false)
     }
 
+    /**
+     * To call the activities list API
+     */
     private fun getActivities() {
         mViewModel.getActivitiesByDate(isInternetConnected, this, mDisposable)
     }
