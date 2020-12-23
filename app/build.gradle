@@ -52,9 +52,9 @@ android {
         production{
             dimension "api"
             buildConfigField STRING, API_URL, APP_PRODUCTION_URL
-            buildConfigField STRING, APP_CLIENT_ID, FITBIT_CLIENT_ID
-            buildConfigField STRING, APP_CLIENT_SECRET, FITBIT_CLIENT_SECRET
-            buildConfigField STRING, APP_CALLBACK_URL, FITBIT_CALLBACK_URL
+            buildConfigField STRING, APP_CLIENT_ID, FITBIT_PRODUCTION_CLIENT_ID
+            buildConfigField STRING, APP_CLIENT_SECRET, FITBIT_PRODUCTION_CLIENT_SECRET
+            buildConfigField STRING, APP_CALLBACK_URL, FITBIT_PRODUCTION_CALLBACK_URL
         }
     }
     compileOptions {
