@@ -18,15 +18,21 @@ import java.net.SocketTimeoutException
 import javax.net.ssl.SSLHandshakeException
 
 /**
- *  To handle error code from one place
+ *  To handle the common response from each and every API call
+ *  Here T is generic class which is wrapped with Retrofit Response class
+ *  @param view BaseView interface reference to call the common message display methods
  */
 abstract class CallbackWrapper<T : Response<*>>(
     private val view: BaseView?
 ) : DisposableObserver<T>() {
+
     internal abstract fun onApiSuccess(response: T)
 
     internal abstract fun onApiError(e: Throwable?)
 
+    /**
+     * This method calls on API response
+     */
     override fun onNext(response: T) {
         when (response.code()) {
             STATUS_200 -> {
@@ -45,10 +51,11 @@ abstract class CallbackWrapper<T : Response<*>>(
         }
     }
 
+    /**
+     * This method calls when API call throws exception
+     */
     override fun onError(e: Throwable) {
-        Timber.d(
-            "Error in API call ${e.printStackTrace()}"
-        )
+        Timber.d("Error in API call ${e.printStackTrace()}")
         when (e) {
             is HttpException -> {
                 e.response()?.also { response ->
@@ -80,6 +87,10 @@ abstract class CallbackWrapper<T : Response<*>>(
         // no need to implement
     }
 
+    /**
+     * Parse and call the respective baseView error method
+     * @param responseBody Retrofit reference variable
+     */
     private fun anotherErrorCode(responseBody: ResponseBody?) {
         val errorModel: ErrorModel? = getErrorMessage(responseBody)
 
@@ -92,6 +103,10 @@ abstract class CallbackWrapper<T : Response<*>>(
         onApiError(null)
     }
 
+    /**
+     * To parse the error data in ErrorModel
+     * @param responseBody Retrofit reference variable
+     */
     private fun getErrorMessage(responseBody: ResponseBody?): ErrorModel? =
         try {
             responseBody?.let {

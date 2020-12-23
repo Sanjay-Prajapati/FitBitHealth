@@ -10,6 +10,9 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
+/**
+ * Fit bit API end point
+ */
 interface ApiEndPoint {
 
     @POST("/oauth2/token")

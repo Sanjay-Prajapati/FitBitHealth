@@ -4,6 +4,10 @@ import android.view.View
 import androidx.annotation.StringRes
 import com.google.android.material.snackbar.Snackbar
 
+/**
+ * This file contains View related extension functions
+ */
+
 fun View.snack(@StringRes msg: Int) {
     Snackbar.make(this, context.getString(msg), Snackbar.LENGTH_SHORT).show()
 }

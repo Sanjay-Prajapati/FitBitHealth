@@ -9,9 +9,16 @@ import com.app.fitbithealth.databinding.ItemProgressBinding
 import com.app.fitbithealth.databinding.ItemWorkoutBinding
 import com.app.fitbithealth.model.ActivitiesModel
 
+/**
+ * Activities listing RecyclerView Adapter
+ * @param mDataList contains list of Activities
+ */
 class WorkoutAdapter(private val mDataList: ArrayList<ActivitiesModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
+        /**
+         * Used for storing loading indicator type
+         */
         const val TYPE_LOAD_MORE = 1
     }
 
@@ -43,20 +50,8 @@ class WorkoutAdapter(private val mDataList: ArrayList<ActivitiesModel>) :
             holder.mBinding.apply {
                 with(mDataList[position]) {
                     holder.mBinding.activities = this
-                    val duration = duration?.let {
-                        it / (1000 * 60)
-                    } ?: let {
-                        0
-                    }
-                    holder.mBinding.tvTime.text = String.format(
-                        holder.itemView.context.getString(R.string.text_time),
-                        duration
-                    )
                     holder.mBinding.tvCalories.text =
-                        String.format(
-                            holder.itemView.context.getString(R.string.text_calories),
-                            calories
-                        )
+                        String.format(holder.itemView.context.getString(R.string.text_calories), calories)
                 }
             }
 
@@ -65,22 +60,35 @@ class WorkoutAdapter(private val mDataList: ArrayList<ActivitiesModel>) :
 
     override fun getItemCount(): Int = mDataList.size
 
+    /**
+     * to clear the all the list data
+     */
     fun clearActivitiesData() {
         mDataList.clear()
         notifyDataSetChanged()
     }
 
+    /**
+     * To store and display more pagination data
+     * @param list list of activities data
+     */
     fun updateMoreActivities(list: ArrayList<ActivitiesModel>) {
         val startIndex = mDataList.size
         mDataList.addAll(list)
         notifyItemRangeChanged(startIndex, mDataList.size)
     }
 
+    /**
+     * This view holder class is used for activities
+     */
     inner class WorkoutViewHolder(itemView: ItemWorkoutBinding) :
         RecyclerView.ViewHolder(itemView.root) {
         val mBinding = itemView
     }
 
+    /**
+     * This view holder class is used for loading indicator
+     */
     class LoadMoreViewHolder(itemView: ItemProgressBinding) :
         RecyclerView.ViewHolder(itemView.root)
 

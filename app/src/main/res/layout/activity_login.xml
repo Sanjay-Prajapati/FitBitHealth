@@ -5,20 +5,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center" />
-
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progressBar"
+            android:id="@+id/tvTitle"
+            style="@style/TextViewStyle.RobotoBold"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/space_90"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_largest"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            style="@style/ButtonStyle.RobotoBold"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/space_16"
-            android:text="@string/text_login_to_fit_bit" />
+            android:text="@string/text_login" />
+
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/item_progressbar" />
+
     </RelativeLayout>
 </layout>

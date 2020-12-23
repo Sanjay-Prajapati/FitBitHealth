@@ -28,6 +28,12 @@ import org.jetbrains.annotations.NotNull
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
+/**
+ * This is the base activity
+ * In this class internet connectivity check, toolbar setup, common error message display handled
+ * BaseView interface implemented to handle the common API errors
+ */
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseView {
     lateinit var mBinding: VB
     private lateinit var mToolbar: Toolbar
@@ -36,11 +42,30 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseVie
     open lateinit var mDisposable: CompositeDisposable
 
 
+    /**
+     * Give resource id for example, R.layout.activity_login
+     */
     @LayoutRes
     abstract fun getResource(): Int
+
+    /**
+     * Initialize the screen views
+     */
     abstract fun initView()
+
+    /**
+     * Observe the live data observable objects
+     */
     abstract fun initObserver()
+
+    /**
+     * All click listener
+     */
     abstract fun handleListener()
+
+    /**
+     * Show snackbar message
+     */
     abstract fun displayMessage(message: String)
 
     @CallSuper
@@ -64,6 +89,12 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseVie
         }
     }
 
+    /**
+     * to set toolbar
+     * @param toolbar toolbar object
+     * @param isBackEnabled to show back arrow or not
+     * @param backgroundColor to change background color
+     */
     @SuppressLint("RestrictedApi")
     protected fun setToolbar(
         @NotNull toolbar: Toolbar, isBackEnabled: Boolean = false,
@@ -83,6 +114,10 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseVie
         }
     }
 
+    /**
+     * this method used for checking internet connection
+     * It call the URL every 3 seconds and update the isInternetConnected object
+     */
     private fun initConnectivity() {
         val settings = InternetObservingSettings.builder()
             .host("www.google.com")
@@ -111,10 +146,16 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseVie
         }
     }
 
+    /**
+     * initialize the Composite disposable object
+     */
     private fun initDisposable() {
         mDisposable = CompositeDisposable()
     }
 
+    /**
+     * To clear the Composite disposable object
+     */
     override fun onDestroy() {
         super.onDestroy()
         mDisposable.clear()
@@ -168,10 +209,17 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseVie
         Timber.d("This method will use in child class for performing common task for all error")
     }
 
+    /**
+     * @param progressBar progress bar view reference
+     * @param isShow to show and hide
+     */
     fun showLoadingIndicator(progressBar: View, isShow: Boolean) {
         progressBar.visibility = if (isShow) View.VISIBLE else View.GONE
     }
 
+    /**
+     * On 401 status code this method invoke
+     */
     override fun autoLogout() {
         mUserHolder.clearData()
         val intent = Intent(this, LoginActivity::class.java)

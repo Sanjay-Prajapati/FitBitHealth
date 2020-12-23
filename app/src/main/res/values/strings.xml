@@ -9,7 +9,8 @@
     <string name="text_server_connection">There is an issue while connecting to server</string>
 
     //login screen
-    <string name="text_login_to_fit_bit">Logging you into Fit Bit Health&#8230;</string>
+    <string name="text_login_to_fit_bit">Give us a moment&#8230;\nWe are Logging you into Fit Bit Health&#8230;</string>
+    <string name="text_login">Login</string>
 
     //workout screen
     <string name="text_title_workout">Your Workout</string>
