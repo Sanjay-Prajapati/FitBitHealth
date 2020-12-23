@@ -13,3 +13,16 @@ A Fit Bit Health android application to fetch data from Fitbit API.
 * RxJava and RxAndroid
 * Data Binding
 * Coroutines
+
+
+## Screenshots
+
+<p float="left">
+  <img src="/AppVideoImages/1.SplashScreen.png" width="150" />
+  <img src="/AppVideoImages/2.LoginScreen.png" width="150" /> 
+  <img src="/AppVideoImages/3.WorkoutScreen.png" width="150" />
+  <img src="/AppVideoImages/4.Calendar.png" width="150" />
+</p>
+
+## Video
+[![](http://img.youtube.com/vi/PaATBpoyD58/0.jpg)](http://www.youtube.com/watch?v=PaATBpoyD58 "")
