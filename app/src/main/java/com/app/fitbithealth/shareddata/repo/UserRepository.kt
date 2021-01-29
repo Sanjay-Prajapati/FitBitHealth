@@ -12,13 +12,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import retrofit2.Response
+import javax.inject.Inject
 
 /**
  * This repository used for API calls
  * @param mApiEndPoint Retrofit API endpoint reference
  * @param mUserHolder Shared preference object reference
  */
-class UserRepository(
+class UserRepository @Inject constructor(
     private val mApiEndPoint: ApiEndPoint,
     private val mUserHolder: UserHolder
 ) : UserRepo {

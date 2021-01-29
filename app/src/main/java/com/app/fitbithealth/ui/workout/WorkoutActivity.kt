@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.fitbithealth.R
@@ -16,12 +17,13 @@ import com.app.fitbithealth.model.ActivitiesModel
 import com.app.fitbithealth.model.ActivitiesResponseModel
 import com.app.fitbithealth.shareddata.base.BaseActivity
 import com.app.fitbithealth.utils.Config
-import org.koin.android.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 /**
  * To list the user workouts
  */
+@AndroidEntryPoint
 class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
     companion object {
         /**
@@ -33,7 +35,7 @@ class WorkoutActivity : BaseActivity<ActivityWorkoutBinding>() {
         }
     }
 
-    private val mViewModel: WorkoutViewModel by viewModel()
+    private val mViewModel: WorkoutViewModel by viewModels()
     private lateinit var mFilterDateDialog: DatePickerDialog
     private lateinit var mFilterCalendar: Calendar
     private var mEndWithAuto = false

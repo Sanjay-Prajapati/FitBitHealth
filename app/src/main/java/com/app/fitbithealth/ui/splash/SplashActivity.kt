@@ -4,16 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.app.fitbithealth.model.UserHolder
 import com.app.fitbithealth.ui.auth.login.LoginActivity
 import com.app.fitbithealth.ui.workout.WorkoutActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import org.koin.android.ext.android.inject
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 /**
  * splash screen
  */
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
     private lateinit var mCoroutineScope: CoroutineScope
-    private val mUserHolder: UserHolder? by inject()
+    @Inject
+    lateinit var mUserHolder: UserHolder
 
     /**
      * Launch screen based on session exist or not?
@@ -23,14 +26,12 @@ class SplashActivity : AppCompatActivity() {
         mCoroutineScope = CoroutineScope(Dispatchers.Main)
         mCoroutineScope.launch {
             delay(TimeUnit.SECONDS.toMillis(2))
-            mUserHolder?.let {
+            mUserHolder.let {
                 if (it.mAccessToken.isNullOrBlank()) {
                     LoginActivity.start(this@SplashActivity)
                 } else {
                     WorkoutActivity.start(this@SplashActivity)
                 }
-            } ?: let {
-                LoginActivity.start(this@SplashActivity)
             }
             finish()
             overridePendingTransition(0, 0)

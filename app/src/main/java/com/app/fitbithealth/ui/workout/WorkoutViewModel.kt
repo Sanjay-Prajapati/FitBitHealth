@@ -10,15 +10,18 @@ import com.app.fitbithealth.model.ActivitiesResponseModel
 import com.app.fitbithealth.model.RequestState
 import com.app.fitbithealth.shareddata.base.BaseView
 import com.app.fitbithealth.shareddata.repo.UserRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Response
 import java.util.*
+import javax.inject.Inject
 
 /**
  * This view model class is used for activities list fetching and store in objects
  * @param mUserRepository User related API calls reference
  */
-class WorkoutViewModel(private val mUserRepository: UserRepo) : ViewModel() {
+@HiltViewModel
+class WorkoutViewModel @Inject constructor(private val mUserRepository: UserRepo) : ViewModel() {
     /**
      * Activities live data object
      */

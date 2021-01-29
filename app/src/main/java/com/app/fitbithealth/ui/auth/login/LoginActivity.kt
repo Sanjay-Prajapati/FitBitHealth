@@ -3,6 +3,7 @@ package com.app.fitbithealth.ui.auth.login
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.activity.viewModels
 import com.app.fitbithealth.R
 import com.app.fitbithealth.common.extension.snack
 import com.app.fitbithealth.common.helper.RxHelper
@@ -11,11 +12,12 @@ import com.app.fitbithealth.shareddata.base.BaseActivity
 import com.app.fitbithealth.ui.workout.WorkoutActivity
 import com.app.fitbithealth.utils.Config
 import com.app.fitbithealth.utils.Config.Companion.OAUTH_URL
-import org.koin.android.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * OAuth Authentication implementation
  */
+@AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     companion object {
         /**
@@ -27,7 +29,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         }
     }
 
-    private val mViewModel: LoginViewModel by viewModel()
+    private val mViewModel: LoginViewModel by viewModels()
 
     override fun getResource(): Int = R.layout.activity_login
 

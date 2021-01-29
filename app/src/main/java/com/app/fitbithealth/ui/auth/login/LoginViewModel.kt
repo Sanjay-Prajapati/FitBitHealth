@@ -9,14 +9,17 @@ import com.app.fitbithealth.model.AuthResponseModel
 import com.app.fitbithealth.model.RequestState
 import com.app.fitbithealth.shareddata.base.BaseView
 import com.app.fitbithealth.shareddata.repo.UserRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Response
+import javax.inject.Inject
 
 /**
  * This view model class is used for access token fetching from fit bit API
  * @param mUserRepository User authentication related API calls reference
  */
-class LoginViewModel(private val mUserRepository: UserRepo) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val mUserRepository: UserRepo) : ViewModel() {
     /**
      * Auth credentials live data object
      */

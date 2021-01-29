@@ -25,8 +25,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.annotations.NotNull
-import org.koin.android.ext.android.inject
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * This is the base activity
@@ -37,7 +37,8 @@ import timber.log.Timber
 abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), BaseView {
     lateinit var mBinding: VB
     private lateinit var mToolbar: Toolbar
-    val mUserHolder: UserHolder by inject()
+    @Inject
+    lateinit var mUserHolder: UserHolder
     var isInternetConnected: Boolean = true
     open lateinit var mDisposable: CompositeDisposable
 
